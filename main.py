@@ -15,17 +15,15 @@ from LSTMModel import LSTMModel
 # Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
 
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+
 
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    print_hi('PyCharm')
+
 
     data_dir = 'First_data'  # Change this to your data folder path
-    data_module = CustomDataModule(data_dir)
+    data_module = CustomDataModule(data_dir, max_length=512)
     model = LSTMModel(input_size=512, hidden_size=64, num_classes=11)
 
     trainer = pl.Trainer(max_epochs=10)  # Set max_epochs and gpus accordingly , gpus=1

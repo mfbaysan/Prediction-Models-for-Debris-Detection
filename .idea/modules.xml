@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/Prediction-Models-for-Debris-Detection.iml" filepath="$PROJECT_DIR$/.idea/Prediction-Models-for-Debris-Detection.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../correlation_IDP/.idea/correlation_IDP.iml" filepath="$PROJECT_DIR$/../correlation_IDP/.idea/correlation_IDP.iml" />
     </modules>
   </component>
 </project>

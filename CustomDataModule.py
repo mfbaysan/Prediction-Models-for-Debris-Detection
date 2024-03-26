@@ -11,17 +11,18 @@ from CustomDataset import CustomDataset
 
 
 class CustomDataModule(pl.LightningDataModule):
-    def __init__(self, data_dir, batch_size=32, train_val_test_split=[0.7, 0.15, 0.15]):
+    def __init__(self, data_dir, batch_size=32, train_val_test_split=[0.7, 0.15, 0.15], max_length=512):
         super().__init__()
         self.data_dir = data_dir
         self.batch_size = batch_size
         self.train_val_test_split = train_val_test_split
+        self.max_length = max_length
 
     def prepare_data(self):
         self.data_files = [os.path.join(self.data_dir, f) for f in os.listdir(self.data_dir) if f.endswith('.pickle')]
 
     def setup(self, stage=None):
-        dataset = CustomDataset(self.data_files)
+        dataset = CustomDataset(self.data_files, max_length=self.max_length)
         train_size = int(self.train_val_test_split[0] * len(dataset))
         val_size = int(self.train_val_test_split[1] * len(dataset))
         test_size = len(dataset) - train_size - val_size
