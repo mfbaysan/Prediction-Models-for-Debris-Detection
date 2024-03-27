@@ -13,11 +13,12 @@ class LSTMModel(pl.LightningModule):
     def __init__(self, input_size, hidden_size, num_classes):
         super().__init__()
         self.lstm = nn.LSTM(input_size=input_size, hidden_size=hidden_size, batch_first=True)
-        self.fc = nn.Linear(hidden_size, num_classes)
+        self.fc = nn.Linear(32, num_classes)
 
     def forward(self, x):
         out, _ = self.lstm(x)
-        out = self.fc(out[:, -1, :])  # Take the last time step's output
+        print(out.shape)
+        out = self.fc(out[:, -1])  # Take the last time step's output HERE IS THE PROBLEM!!!!
         return out
 
     def training_step(self, batch, batch_idx):

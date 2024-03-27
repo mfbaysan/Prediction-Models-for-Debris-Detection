@@ -62,7 +62,7 @@ if __name__ == '__main__':
                 radar_return = data['radar_return']
                 object_id = data['object_id']
                 # Concatenate radar_return along the columns
-                concatenated_radar = process_radar_return(radar_return).astype('float64')
+                concatenated_radar = process_radar_return(radar_return).astype('float32')
                 # Create a DataFrame with concatenated radar and object_id
                 df = pd.DataFrame({'radar_return': [concatenated_radar], 'object_id': [object_id]})
                 # Append the DataFrame to the list
@@ -73,7 +73,7 @@ if __name__ == '__main__':
 
     # Encode object_id using LabelEncoder
     label_encoder = LabelEncoder()
-    combined_df['object_id'] = label_encoder.fit_transform(combined_df['object_id']).astype('float64')
+    combined_df['object_id'] = label_encoder.fit_transform(combined_df['object_id']).astype('float32')
     print(combined_df.dtypes)
     # Example usage:
     data_module = CustomDataModule(combined_df)
