@@ -12,10 +12,11 @@ from CustomDataset import CustomDataset
 
 
 class CustomDataModule(pl.LightningDataModule):
-    def __init__(self, dataframe, batch_size=32):
+    def __init__(self, dataframe, device, batch_size=32):
         super().__init__()
         self.dataframe = dataframe
         self.batch_size = batch_size
+        self.device = device
 
     def prepare_data(self):
         # No data downloading needed
@@ -26,9 +27,9 @@ class CustomDataModule(pl.LightningDataModule):
         train_df, val_test_df = train_test_split(self.dataframe, test_size=0.3, random_state=42)
         val_df, test_df = train_test_split(val_test_df, test_size=0.5, random_state=42)
 
-        self.train_dataset = CustomDataset(train_df)
-        self.val_dataset = CustomDataset(val_df)
-        self.test_dataset = CustomDataset(test_df)
+        self.train_dataset = CustomDataset(train_df, device=self.device)
+        self.val_dataset = CustomDataset(val_df, device=self.device)
+        self.test_dataset = CustomDataset(test_df, device=self.device)
 
     def train_dataloader(self):
         return DataLoader(self.train_dataset, batch_size=self.batch_size, shuffle=True)
@@ -37,4 +38,4 @@ class CustomDataModule(pl.LightningDataModule):
         return DataLoader(self.val_dataset, batch_size=self.batch_size)
 
     def test_dataloader(self):
-        return DataLoader(self.test_dataset, batch_size=self.batch_size)
+        return DataLoader(self.test_dataset, batch_size=self.batch_size )

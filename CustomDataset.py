@@ -11,8 +11,9 @@ from sklearn.preprocessing import LabelEncoder
 
 
 class CustomDataset(Dataset):
-    def __init__(self, dataframe):
+    def __init__(self, dataframe, device):
         self.dataframe = dataframe
+        self.device = device
 
     def __len__(self):
         return len(self.dataframe)
@@ -20,7 +21,7 @@ class CustomDataset(Dataset):
     def __getitem__(self, idx):
         radar_return = self.dataframe.iloc[idx]['radar_return']
         label = self.dataframe.iloc[idx]['object_id']
-        return radar_return, label
+        return torch.tensor(radar_return).to(self.device), torch.tensor(label).to(self.device)
 
 
 

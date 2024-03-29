@@ -13,32 +13,32 @@ class LSTMModel(pl.LightningModule):
     def __init__(self, input_size, hidden_size, num_classes):
         super().__init__()
         self.lstm = nn.LSTM(input_size=input_size, hidden_size=hidden_size, batch_first=True)
-        self.fc = nn.Linear(32, num_classes)
+        self.fc = nn.Linear(hidden_size, num_classes)
 
     def forward(self, x):
+        x = x[..., None]
         out, _ = self.lstm(x)
-        print(out.shape)
         out = self.fc(out[:, -1])  # Take the last time step's output HERE IS THE PROBLEM!!!!
         return out
 
     def training_step(self, batch, batch_idx):
         x, y = batch
         logits = self.forward(x)
-        loss = F.cross_entropy(logits, y)
-        self.log('train_loss', loss)
+        loss = F.cross_entropy(logits, y.long())
+        self.log('train_loss', loss, on_step=True, on_epoch=True, prog_bar=True, logger=True)
         return loss
 
     def validation_step(self, batch, batch_idx):
         x, y = batch
         logits = self.forward(x)
-        loss = F.cross_entropy(logits, y)
+        loss = F.cross_entropy(logits, y.long())
         self.log('val_loss', loss)
         return loss
 
     def test_step(self, batch, batch_idx):
         x, y = batch
         logits = self.forward(x)
-        loss = F.cross_entropy(logits, y)
+        loss = F.cross_entropy(logits, y.long())
         self.log('test_loss', loss)
         return loss
 

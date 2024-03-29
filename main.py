@@ -47,8 +47,12 @@ def process_radar_return(radar_return):
 
 if __name__ == '__main__':
 
-    data_dir = 'First_data'  # Change this to your data folder path
+    data_dir = 'Tiny_data'  # Change this to your data folder path
     dataframes = []
+
+    # set device!
+    print(torch.cuda.is_available())
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
     # Iterate over each pickle file
     print("creating the dataframe...")
@@ -76,14 +80,17 @@ if __name__ == '__main__':
     combined_df['object_id'] = label_encoder.fit_transform(combined_df['object_id']).astype('float32')
     print(combined_df.dtypes)
     # Example usage:
-    data_module = CustomDataModule(combined_df)
+    data_module = CustomDataModule(combined_df, device=device)
 
-    input_size = 512  # Size of concatenated radar_return
+    input_size = 1  #512  # Size of concatenated radar_return
     hidden_size = 64
     num_classes = len(label_encoder.classes_)
-    model = LSTMModel(input_size, hidden_size, num_classes)
+    model = LSTMModel(input_size, hidden_size, num_classes).to(device)
+    print(model)
 
     # Train the model
     print("training the model...")
-    trainer = pl.Trainer(max_epochs=10)
+    trainer = pl.Trainer(max_epochs=10,
+                         accelerator='gpu' if device == torch.device('cuda') else "cpu",
+                         devices=1 if device == torch.device('cuda') else "cpu",)
     trainer.fit(model, data_module)
