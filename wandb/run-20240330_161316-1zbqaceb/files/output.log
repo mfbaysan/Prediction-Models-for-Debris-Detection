@@ -1,0 +1,30 @@
+GPU available: True (cuda), used: True
+TPU available: False, using: 0 TPU cores
+IPU available: False, using: 0 IPUs
+HPU available: False, using: 0 HPUs
+Traceback (most recent call last):
+  File "C:\Users\fatih\PycharmProjects\model_implementation\main.py", line 100, in <module>
+    trainer.fit(model, data_module)
+  File "C:\Users\fatih\PycharmProjects\model_implementation\venv\lib\site-packages\pytorch_lightning\trainer\trainer.py", line 544, in fit
+    call._call_and_handle_interrupt(
+  File "C:\Users\fatih\PycharmProjects\model_implementation\venv\lib\site-packages\pytorch_lightning\trainer\call.py", line 44, in _call_and_handle_interrupt
+    return trainer_fn(*args, **kwargs)
+  File "C:\Users\fatih\PycharmProjects\model_implementation\venv\lib\site-packages\pytorch_lightning\trainer\trainer.py", line 580, in _fit_impl
+    self._run(model, ckpt_path=ckpt_path)
+  File "C:\Users\fatih\PycharmProjects\model_implementation\venv\lib\site-packages\pytorch_lightning\trainer\trainer.py", line 949, in _run
+    call._call_setup_hook(self)  # allow user to set up LightningModule in accelerator environment
+  File "C:\Users\fatih\PycharmProjects\model_implementation\venv\lib\site-packages\pytorch_lightning\trainer\call.py", line 92, in _call_setup_hook
+    _call_lightning_datamodule_hook(trainer, "setup", stage=fn)
+  File "C:\Users\fatih\PycharmProjects\model_implementation\venv\lib\site-packages\pytorch_lightning\trainer\call.py", line 179, in _call_lightning_datamodule_hook
+    return fn(*args, **kwargs)
+  File "C:\Users\fatih\PycharmProjects\model_implementation\CustomDataModule.py", line 27, in setup
+    train_df, val_test_df = train_test_split(self.dataframe, test_size=0.3, random_state=42, stratify=self.dataframe['object_id'])
+  File "C:\Users\fatih\PycharmProjects\model_implementation\venv\lib\site-packages\sklearn\utils\_param_validation.py", line 213, in wrapper
+    return func(*args, **kwargs)
+  File "C:\Users\fatih\PycharmProjects\model_implementation\venv\lib\site-packages\sklearn\model_selection\_split.py", line 2681, in train_test_split
+    train, test = next(cv.split(X=arrays[0], y=stratify))
+  File "C:\Users\fatih\PycharmProjects\model_implementation\venv\lib\site-packages\sklearn\model_selection\_split.py", line 1749, in split
+    for train, test in self._iter_indices(X, y, groups):
+  File "C:\Users\fatih\PycharmProjects\model_implementation\venv\lib\site-packages\sklearn\model_selection\_split.py", line 2150, in _iter_indices
+    raise ValueError(
+ValueError: The least populated class in y has only 1 member, which is too few. The minimum number of groups for any class cannot be less than 2.
