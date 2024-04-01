@@ -1,6 +1,4 @@
 # This is a sample Python script.
-import torch
-import torch.nn as nn
 import torch.nn.functional as F
 import pytorch_lightning as pl
 import pickle
@@ -14,6 +12,12 @@ from LSTMModel import LSTMModel
 from lightning.pytorch.loggers import WandbLogger
 from pytorch_lightning.utilities.model_summary import summarize
 from sklearn.preprocessing import MinMaxScaler
+import torch
+import torch.nn as nn
+import torch.optim as optim
+
+
+
 
 
 def process_radar_return(radar_return):
@@ -76,6 +80,10 @@ def normalize_radar_return_column(combined_df):
     print(combined_df['radar_return'].shape)
     return combined_df
 
+
+
+
+
 if __name__ == '__main__':
 
     data_dir = 'Overfit_data'  # Change this to your data folder path
@@ -132,3 +140,4 @@ if __name__ == '__main__':
                          devices=1 if device == torch.device('cuda') else "cpu",
                          logger=wandb_logger)
     trainer.fit(model, data_module)
+
