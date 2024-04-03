@@ -1,0 +1,53 @@
+{
+    "os": "Windows-10-10.0.19045-SP0",
+    "python": "3.9.13",
+    "heartbeatAt": "2024-03-31T14:50:26.978987",
+    "startedAt": "2024-03-31T14:50:24.591492",
+    "docker": null,
+    "cuda": null,
+    "args": [],
+    "state": "running",
+    "program": "C:\\Users\\fatih\\PycharmProjects\\model_implementation\\main.py",
+    "codePathLocal": "main.py",
+    "codePath": "main.py",
+    "git": {
+        "remote": "https://github.com/mfbaysan/model_implementation.git",
+        "commit": "9b96a3ad1e420a7ba749ef0ecf8fe1047551f7f3"
+    },
+    "email": "28350029+mfbaysan@users.noreply.github.com",
+    "root": "C:/Users/fatih/PycharmProjects/model_implementation",
+    "host": "DESKTOP-RBVB8UC",
+    "username": "fatih",
+    "executable": "C:\\Users\\fatih\\PycharmProjects\\model_implementation\\venv\\Scripts\\python.exe",
+    "cpu_count": 4,
+    "cpu_count_logical": 8,
+    "cpu_freq": {
+        "current": 1400.0,
+        "min": 0.0,
+        "max": 2801.0
+    },
+    "cpu_freq_per_core": [
+        {
+            "current": 1400.0,
+            "min": 0.0,
+            "max": 2801.0
+        }
+    ],
+    "disk": {
+        "/": {
+            "total": 118.41034317016602,
+            "used": 113.46454238891602
+        }
+    },
+    "gpu": "NVIDIA GeForce GTX 1050",
+    "gpu_count": 1,
+    "gpu_devices": [
+        {
+            "name": "NVIDIA GeForce GTX 1050",
+            "memory_total": 2147483648
+        }
+    ],
+    "memory": {
+        "total": 7.919628143310547
+    }
+}

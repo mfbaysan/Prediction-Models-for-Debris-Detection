@@ -1,0 +1,570 @@
+wandb_version: 1
+
+_wandb:
+  desc: null
+  value:
+    python_version: 3.9.13
+    cli_version: 0.16.5
+    framework: lightning
+    is_jupyter_run: false
+    is_kaggle_kernel: false
+    start_time: 1711895377.0
+    t:
+      1:
+      - 1
+      - 5
+      - 9
+      - 53
+      - 55
+      - 103
+      2:
+      - 1
+      - 5
+      - 9
+      - 53
+      - 55
+      - 103
+      3:
+      - 1
+      - 7
+      - 23
+      - 62
+      4: 3.9.13
+      5: 0.16.5
+      8:
+      - 3
+      - 5
+      13: windows-amd64
+    m:
+    - 1: trainer/global_step
+      6:
+      - 3
+    - 1: train_loss_epoch
+      5: 1
+      6:
+      - 1
+    - 1: epoch
+      5: 1
+      6:
+      - 1
+    - 1: train_loss_step
+      5: 1
+      6:
+      - 1
+    - 1: train_acc
+      5: 1
+      6:
+      - 1
+    - 1: gradients/fc\.bias._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/fc\.bias.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/fc\.bias.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/fc\.weight._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/fc\.weight.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/fc\.weight.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/lstm\.weight_ih_l0._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/lstm\.weight_ih_l0.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/lstm\.weight_ih_l0.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/lstm\.bias_ih_l0._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/lstm\.bias_ih_l0.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/lstm\.bias_ih_l0.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/lstm\.bias_ih_l1._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/lstm\.bias_ih_l1.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/lstm\.bias_ih_l1.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/lstm\.bias_ih_l3._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/lstm\.bias_ih_l3.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/lstm\.bias_ih_l3.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/lstm\.bias_ih_l7._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/lstm\.bias_ih_l7.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/lstm\.bias_ih_l7.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/lstm\.bias_hh_l9._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/lstm\.bias_hh_l9.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/lstm\.bias_hh_l9.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/lstm\.bias_ih_l9._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/lstm\.bias_ih_l9.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/lstm\.bias_ih_l9.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/lstm\.weight_hh_l9._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/lstm\.weight_hh_l9.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/lstm\.weight_hh_l9.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/lstm\.weight_ih_l9._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/lstm\.weight_ih_l9.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/lstm\.weight_ih_l9.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/lstm\.bias_hh_l8._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/lstm\.bias_hh_l8.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/lstm\.bias_hh_l8.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/lstm\.bias_ih_l8._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/lstm\.bias_ih_l8.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/lstm\.bias_ih_l8.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/lstm\.weight_hh_l8._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/lstm\.weight_hh_l8.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/lstm\.weight_hh_l8.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/lstm\.weight_ih_l8._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/lstm\.weight_ih_l8.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/lstm\.weight_ih_l8.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/lstm\.weight_hh_l7._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/lstm\.weight_hh_l7.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/lstm\.weight_hh_l7.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/lstm\.bias_hh_l7._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/lstm\.bias_hh_l7.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/lstm\.bias_hh_l7.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/lstm\.weight_ih_l7._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/lstm\.weight_ih_l7.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/lstm\.weight_ih_l7.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/lstm\.bias_hh_l6._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/lstm\.bias_hh_l6.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/lstm\.bias_hh_l6.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/lstm\.bias_ih_l6._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/lstm\.bias_ih_l6.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/lstm\.bias_ih_l6.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/lstm\.weight_hh_l6._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/lstm\.weight_hh_l6.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/lstm\.weight_hh_l6.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/lstm\.weight_ih_l6._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/lstm\.weight_ih_l6.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/lstm\.weight_ih_l6.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/lstm\.bias_hh_l5._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/lstm\.bias_hh_l5.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/lstm\.bias_hh_l5.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/lstm\.bias_ih_l5._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/lstm\.bias_ih_l5.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/lstm\.bias_ih_l5.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/lstm\.weight_hh_l5._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/lstm\.weight_hh_l5.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/lstm\.weight_hh_l5.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/lstm\.weight_ih_l5._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/lstm\.weight_ih_l5.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/lstm\.weight_ih_l5.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/lstm\.bias_hh_l4._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/lstm\.bias_hh_l4.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/lstm\.bias_hh_l4.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/lstm\.bias_ih_l4._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/lstm\.bias_ih_l4.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/lstm\.bias_ih_l4.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/lstm\.weight_hh_l4._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/lstm\.weight_hh_l4.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/lstm\.weight_hh_l4.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/lstm\.weight_ih_l4._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/lstm\.weight_ih_l4.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/lstm\.weight_ih_l4.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/lstm\.weight_hh_l3._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/lstm\.weight_hh_l3.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/lstm\.weight_hh_l3.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/lstm\.bias_hh_l3._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/lstm\.bias_hh_l3.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/lstm\.bias_hh_l3.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/lstm\.weight_ih_l3._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/lstm\.weight_ih_l3.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/lstm\.weight_ih_l3.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/lstm\.bias_hh_l2._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/lstm\.bias_hh_l2.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/lstm\.bias_hh_l2.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/lstm\.bias_ih_l2._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/lstm\.bias_ih_l2.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/lstm\.bias_ih_l2.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/lstm\.weight_hh_l2._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/lstm\.weight_hh_l2.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/lstm\.weight_hh_l2.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/lstm\.weight_ih_l2._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/lstm\.weight_ih_l2.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/lstm\.weight_ih_l2.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/lstm\.weight_hh_l1._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/lstm\.weight_hh_l1.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/lstm\.weight_hh_l1.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/lstm\.bias_hh_l1._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/lstm\.bias_hh_l1.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/lstm\.bias_hh_l1.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/lstm\.weight_ih_l1._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/lstm\.weight_ih_l1.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/lstm\.weight_ih_l1.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/lstm\.weight_hh_l0._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/lstm\.weight_hh_l0.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/lstm\.weight_hh_l0.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/lstm\.bias_hh_l0._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/lstm\.bias_hh_l0.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/lstm\.bias_hh_l0.bins
+      5: 1
+      6:
+      - 1
+input_size:
+  desc: null
+  value: 1
+hidden_size:
+  desc: null
+  value: 64
+num_classes:
+  desc: null
+  value: 2
