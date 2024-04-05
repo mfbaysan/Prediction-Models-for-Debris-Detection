@@ -30,17 +30,21 @@ class LSTMModel(pl.LightningModule):
         x, y = batch
         logits = self.forward(x)
         loss = F.cross_entropy(logits, y.long())
-        self.log('train_loss', loss, on_step=True, on_epoch=True, prog_bar=True, logger=True)
         train_acc = self.accuracy(F.softmax(logits), y)
+
+        self.log('train_loss', loss, on_step=True, on_epoch=True, prog_bar=True, logger=True)
         self.log('train_acc', train_acc, on_step=True, on_epoch=False)
+
         return loss
 
     def validation_step(self, batch, batch_idx):
         x, y = batch
         logits = self.forward(x)
         loss = F.cross_entropy(logits, y.long())
+
         self.log('val_loss', loss, on_step=True, on_epoch=True, prog_bar=True, logger=True)
         val_acc = self.accuracy(F.softmax(logits), y)
+
         self.log('valid_acc', val_acc, on_step=True, on_epoch=True)
         return loss
 
@@ -48,11 +52,11 @@ class LSTMModel(pl.LightningModule):
         x, y = batch
         logits = self.forward(x)
         loss = F.cross_entropy(logits, y.long())
-        self.log('test_loss', loss)
         test_acc = self.accuracy(F.softmax(logits), y)
+
+        self.log('test_loss', loss)
         self.log('test_acc', test_acc, on_step=True, on_epoch=True)
         return loss
 
     def configure_optimizers(self):
-        return torch.optim.Adam(self.parameters(), lr=0.01)
-
+        return torch.optim.Adam(self.parameters(), lr=0.001)

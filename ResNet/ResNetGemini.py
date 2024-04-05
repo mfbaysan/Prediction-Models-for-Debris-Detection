@@ -64,7 +64,7 @@ def combine_dataframes(data_dir: str) -> pd.DataFrame:
                 dataframes.append(df)
 
     # Concatenate all DataFrames into one
-    combined_df = pd.concat(dataframes[::20], ignore_index=True) #[::50]
+    combined_df = pd.concat(dataframes, ignore_index=True) #[::50]
     # combined_df = normalize_radar_return_column(combined_df)
     # print(normalize_radar_return_column(combined_df))
 
