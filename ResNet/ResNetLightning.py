@@ -40,6 +40,8 @@ class RadarResnet18(pl.LightningModule):
         self.log('train/loss', loss)
         self.log('train/accuracy', accuracy)
 
+        return loss
+
     def validation_step(self, batch, batch_idx):
         x, y = batch
 
