@@ -38,7 +38,7 @@ class RadarResnet18(pl.LightningModule):
         accuracy = (logits.argmax(-1) == y).float().mean().item()
 
         self.log('train/loss', loss)
-        self.log('tain/accuracy', accuracy)
+        self.log('train/accuracy', accuracy)
 
     def validation_step(self, batch, batch_idx):
         x, y = batch
