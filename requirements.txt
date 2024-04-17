@@ -1,3 +1,5 @@
 torch
-pytorch-lightning
-scikit-learn
+pytorch_lightning
+sklearn
+pickle
+pandas
