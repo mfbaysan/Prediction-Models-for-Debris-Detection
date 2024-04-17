@@ -1,5 +1,5 @@
 torch
-pytorch_lightning
-sklearn
+pytorch-lightning
+scikit-learn
 pickle
 pandas
