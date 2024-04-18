@@ -160,8 +160,8 @@ if __name__ == "__main__":
     X_train, X_test, y_train, y_test = train_test_split(image_data, labels, test_size=0.2,
                                                         random_state=42, stratify=labels)
 
-    X_train = image_data.to(device)
-    y_train = labels.to(device)
+    X_train = X_train.to(device)
+    y_train = y_train.to(device)
     num_classes = 10  # Your number of classes
 
     # Create PyTorch Dataset and DataLoader
