@@ -38,7 +38,6 @@ class CustomDataset(Dataset):
 
             class_data = np.concatenate(class_data, axis=0)
 
-            class_data = self.normalize_samples(class_data)
             class_labels = np.full((class_data.shape[0], 1), class_idx)
             #print(class_data.shape)
             self.data.append(class_data)
@@ -55,15 +54,6 @@ class CustomDataset(Dataset):
         label = torch.LongTensor(self.labels[idx])
         return data_sample, label
 
-    def normalize_samples(self, data):
-        # Calculate mean and standard deviation for each sample
-        sample_means = np.mean(data, axis=1, keepdims=True)
-        sample_stds = np.std(data, axis=1, keepdims=True)
-
-        # Normalize each sample
-        normalized_data = (data - sample_means) / sample_stds
-
-        return normalized_data
 
 
 class RadarDataModule(pl.LightningDataModule):
@@ -117,7 +107,7 @@ if __name__ == "__main__":
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     # Assuming your data directory is "data"
     root_dir = "../New_data"
-    batch_size = 64
+    batch_size = 32
 
     custom_dataset = CustomDataset(root_dir)
     data_module = RadarDataModule(custom_dataset, batch_size=batch_size, val_split=0.2)
@@ -127,15 +117,15 @@ if __name__ == "__main__":
 
 
     # Define block type (BasicBlock or Bottleneck)
-    model = ResidualNetwork([2, 2, 2, 2, 2], num_classes=11, activation='silu', use_noise=True, noise_stddev=0.1,
-                            fc_neurons=64, in_out_channels=[(32, 32), (32, 64), (64, 128), (128, 256), (256, 512)])
+    model = ResidualNetwork([2, 2, 2, 2, 2], num_classes=11, activation='silu', use_noise=False, noise_stddev=0.1,
+                            fc_units=64, in_out_channels=[(32, 32), (32, 64), (64, 128), (128, 256), (256, 512)])
     #print(model)
 
-    # wandb_logger = WandbLogger(project='Resnet_NewData')
-    # wandb_logger.watch(model, log="all")
+    wandb_logger = WandbLogger(project='Resnet_NewData')
+    wandb_logger.watch(model, log="all")
 
-    trainer = Trainer(max_epochs=10, accelerator="auto")
-                      #,logger=wandb_logger)
+    trainer = Trainer(max_epochs=10, accelerator="auto", logger=wandb_logger)
+
     trainer.fit(model, datamodule=data_module)
 
     # Print the model architecture (optional)
