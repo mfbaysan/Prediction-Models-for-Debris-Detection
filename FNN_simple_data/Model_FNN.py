@@ -1,6 +1,7 @@
 from pytorch_lightning import LightningDataModule, LightningModule, Trainer
 import pytorch_lightning as pl
 import torch.nn as nn
+from pytorch_lightning.callbacks import EarlyStopping
 from torch.utils.data import random_split
 import random
 from torch.nn import functional as F
@@ -13,6 +14,8 @@ from tqdm import tqdm
 from pytorch_lightning.loggers import WandbLogger
 import torch.optim as optim
 from torch.optim.lr_scheduler import ReduceLROnPlateau
+from resnet import ResNet, ResNetWrapper, _resnet, BasicBlock
+from residual_network import ResidualNetwork
 
 
 class CustomDataset(Dataset):
@@ -85,115 +88,36 @@ class RadarDataModule(pl.LightningDataModule):
         return DataLoader(self.val_dataset, batch_size=self.batch_size)
 
 
-
-class ResNetBlock(nn.Module):
-    def __init__(self, in_channels, out_channels, stride=1, downsample=None):
-        super(ResNetBlock, self).__init__()
-        self.conv1 = nn.Conv1d(in_channels, out_channels, kernel_size=3, stride=stride, padding=1, bias=False)
-        self.bn1 = nn.BatchNorm1d(out_channels)
-        self.relu = nn.LeakyReLU(0.1)
-        self.conv2 = nn.Conv1d(out_channels, out_channels, kernel_size=3, stride=1, padding=1, bias=False)
-        self.bn2 = nn.BatchNorm1d(out_channels)
-        self.downsample = downsample
+class ResNetLightning(LightningModule):
+    def __init__(self, block_type, layers, num_classes=11, out_dim=None, learning_rate=1e-3):
+        super().__init__()
+        self.model = ResNetWrapper(block_type, layers, num_classes=num_classes, out_dim=out_dim)
+        self.learning_rate = learning_rate
+        self.criterion = nn.CrossEntropyLoss()  # Loss for multi-class classification
 
     def forward(self, x):
-        identity = x
-        out = self.conv1(x)
-        out = self.bn1(out)
-        out = self.relu(out)
+        x = self.model(x)
+        print(f"Input shape received by model: {x.shape}")
 
-        out = self.conv2(out)
-        out = self.bn2(out)
-
-        if self.downsample is not None:
-            identity = self.downsample(x)
-
-        out += identity
-        out = self.relu(out)
-
-        return out
-
-class ResNet18(pl.LightningModule):
-    def __init__(self, num_classes):
-        super(ResNet18, self).__init__()
-        self.conv1 = nn.Conv1d(1, 16, kernel_size=5, stride=1, padding=2, bias=False)
-        self.bn1 = nn.BatchNorm1d(16)
-        self.relu = nn.ReLU(inplace=True)
-        self.maxpool = nn.MaxPool1d(kernel_size=3, stride=2, padding=1)
-        self.layer1 = self._make_layer(16, 2)
-        self.layer2 = self._make_layer(32, 2, stride=2)
-        self.layer3 = self._make_layer(64, 2, stride=2)
-        self.layer4 = self._make_layer(128, 2, stride=2)
-        self.layer5 = self._make_layer(256, 2, stride=2)
-        self.layer6 = self._make_layer(512, 2, stride=2)
-        self.avgpool = nn.AdaptiveAvgPool1d(1)
-        self.fc = nn.Linear(512, num_classes)
-
-        self.lr_scheduler = ReduceLROnPlateau(optimizer=self.configure_optimizers()['optimizer'], mode='min',
-                                              factor=0.1, patience=3)
-
-    def _make_layer(self, out_channels, blocks, stride=1):
-        layers = []
-        layers.append(ResNetBlock(self.in_channels, out_channels, stride))
-        self.in_channels = out_channels
-        for _ in range(1, blocks):
-            layers.append(ResNetBlock(out_channels, out_channels))
-        return nn.Sequential(*layers)
-
-    def forward(self, x):
-        x = self.conv1(x)
-        x = self.bn1(x)
-        x = self.relu(x)
-        x = self.maxpool(x)
-
-        x = self.layer1(x)
-        x = self.layer2(x)
-        x = self.layer3(x)
-        x = self.layer4(x)
-        x = self.layer5(x)
-        x = self.layer6(x)
-
-        x = self.avgpool(x)
-        x = torch.flatten(x, 1)
-        x = self.fc(x)
-        return x
+        return x  # Forward pass through the ResNet model
 
     def training_step(self, batch, batch_idx):
         x, y = batch
         logits = self.forward(x)
-        train_y = y.squeeze(1)
-        #print("sqeueezed train y", train_y)
-        loss = F.cross_entropy(logits, train_y)
-        accuracy = (logits.argmax(-1) == y).float().mean().item()
-
-        self.log('train/loss', loss)
-        self.log('train/accuracy', accuracy)
-
-        return loss
-
-    def validation_step(self, batch, batch_idx):
-        x, y = batch
-        logits = self.forward(x)
-        val_y = y.squeeze(1)
-        #print("squeezed y", val_y)
-        # Calculate loss using cross-entropy function
-        loss = F.cross_entropy(logits, val_y)
-        accuracy = (logits.argmax(-1) == y).float().mean().item()
-
-        self.log('val/loss', loss)
-        self.log('val/accuracy', accuracy)
-
+        loss = self.criterion(logits, y)
         return loss
 
     def configure_optimizers(self):
-        return torch.optim.Adam(self.parameters(), lr=0.03)
+        optimizer = torch.optim.Adam(self.model.parameters(), lr=self.learning_rate)
+        return optimizer
+
 
 
 if __name__ == "__main__":
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     # Assuming your data directory is "data"
     root_dir = "../New_data"
-    batch_size = 32
+    batch_size = 64
 
     custom_dataset = CustomDataset(root_dir)
     data_module = RadarDataModule(custom_dataset, batch_size=batch_size, val_split=0.2)
@@ -202,22 +126,19 @@ if __name__ == "__main__":
     print("Length of the dataset:", dataset_length)
 
 
-    # Print out the random samples
-    random_indices = random.sample(range(dataset_length), 5)
+    # Define block type (BasicBlock or Bottleneck)
+    model = ResidualNetwork([2, 2, 2, 2, 2], num_classes=11, activation='silu', use_noise=True, noise_stddev=0.1,
+                            fc_neurons=64, in_out_channels=[(32, 32), (32, 64), (64, 128), (128, 256), (256, 512)])
+    #print(model)
 
-    # Print out the random samples
-    for idx in random_indices:
-        data_sample, label = custom_dataset.__getitem__(idx)
-        print("\nSample Index:", idx)
-        print("Data sample from the .mat file:", data_sample.shape)
-        print("Label for the data sample:", label)
+    # wandb_logger = WandbLogger(project='Resnet_NewData')
+    # wandb_logger.watch(model, log="all")
 
-    num_classes = 11  # Update with the number of classes in your dataset
-    model = ResNet18(num_classes)
-
-    wandb_logger = WandbLogger(project='Resnet_NewData')
-    wandb_logger.watch(model, log="all")
-    # Training
-    trainer = Trainer(max_epochs=50, accelerator="auto", log_every_n_steps=10, logger=wandb_logger)  # Set gpus=0 for CPU training
+    trainer = Trainer(max_epochs=10, accelerator="auto")
+                      #,logger=wandb_logger)
     trainer.fit(model, datamodule=data_module)
+
+    # Print the model architecture (optional)
+
+
 

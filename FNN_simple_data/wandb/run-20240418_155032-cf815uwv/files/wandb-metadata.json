@@ -1,0 +1,53 @@
+{
+    "os": "Windows-10-10.0.19045-SP0",
+    "python": "3.9.13",
+    "heartbeatAt": "2024-04-18T13:50:33.921454",
+    "startedAt": "2024-04-18T13:50:32.247292",
+    "docker": null,
+    "cuda": null,
+    "args": [],
+    "state": "running",
+    "program": "D:\\model_implementation\\FNN_simple_data\\Model_FNN.py",
+    "codePathLocal": "Model_FNN.py",
+    "codePath": "FNN_simple_data\\Model_FNN.py",
+    "git": {
+        "remote": "https://github.com/mfbaysan/model_implementation.git",
+        "commit": "c9d11b076fadda3c8b174246416b1c9f9f9b06bd"
+    },
+    "email": "28350029+mfbaysan@users.noreply.github.com",
+    "root": "D:/model_implementation",
+    "host": "DESKTOP-RBVB8UC",
+    "username": "fatih",
+    "executable": "D:\\model_implementation\\FNN_simple_data\\venv\\Scripts\\python.exe",
+    "cpu_count": 4,
+    "cpu_count_logical": 8,
+    "cpu_freq": {
+        "current": 2801.0,
+        "min": 0.0,
+        "max": 2801.0
+    },
+    "cpu_freq_per_core": [
+        {
+            "current": 2801.0,
+            "min": 0.0,
+            "max": 2801.0
+        }
+    ],
+    "disk": {
+        "/": {
+            "total": 921.5155944824219,
+            "used": 601.8769340515137
+        }
+    },
+    "gpu": "NVIDIA GeForce GTX 1050",
+    "gpu_count": 1,
+    "gpu_devices": [
+        {
+            "name": "NVIDIA GeForce GTX 1050",
+            "memory_total": 2147483648
+        }
+    ],
+    "memory": {
+        "total": 7.919628143310547
+    }
+}

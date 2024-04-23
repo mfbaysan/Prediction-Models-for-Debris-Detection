@@ -1,0 +1,801 @@
+wandb_version: 1
+
+_wandb:
+  desc: null
+  value:
+    python_version: 3.9.13
+    cli_version: 0.16.6
+    framework: lightning
+    is_jupyter_run: false
+    is_kaggle_kernel: false
+    start_time: 1713448232.0
+    t:
+      1:
+      - 1
+      - 9
+      - 55
+      - 103
+      2:
+      - 1
+      - 9
+      - 55
+      - 103
+      3:
+      - 1
+      - 7
+      - 23
+      - 62
+      4: 3.9.13
+      5: 0.16.6
+      8:
+      - 3
+      - 5
+      13: windows-amd64
+    m:
+    - 1: trainer/global_step
+      6:
+      - 3
+    - 1: train/loss
+      5: 1
+      6:
+      - 1
+    - 1: train/accuracy
+      5: 1
+      6:
+      - 1
+    - 1: epoch
+      5: 1
+      6:
+      - 1
+    - 1: gradients/fc\.bias._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/fc\.bias.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/fc\.bias.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/fc\.weight._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/fc\.weight.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/fc\.weight.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer4\.1\.bn2\.weight._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer4\.1\.bn2\.weight.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer4\.1\.bn2\.weight.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer4\.1\.bn2\.bias._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer4\.1\.bn2\.bias.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer4\.1\.bn2\.bias.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer4\.1\.conv2\.weight._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer4\.1\.conv2\.weight.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer4\.1\.conv2\.weight.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer4\.1\.bn1\.weight._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer4\.1\.bn1\.weight.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer4\.1\.bn1\.weight.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer4\.1\.bn1\.bias._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer4\.1\.bn1\.bias.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer4\.1\.bn1\.bias.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer4\.1\.conv1\.weight._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer4\.1\.conv1\.weight.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer4\.1\.conv1\.weight.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer4\.0\.downsample\.1\.weight._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer4\.0\.downsample\.1\.weight.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer4\.0\.downsample\.1\.weight.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer4\.0\.downsample\.1\.bias._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer4\.0\.downsample\.1\.bias.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer4\.0\.downsample\.1\.bias.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer4\.0\.downsample\.0\.weight._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer4\.0\.downsample\.0\.weight.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer4\.0\.downsample\.0\.weight.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer4\.0\.bn2\.weight._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer4\.0\.bn2\.weight.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer4\.0\.bn2\.weight.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer4\.0\.bn2\.bias._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer4\.0\.bn2\.bias.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer4\.0\.bn2\.bias.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer4\.0\.conv2\.weight._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer4\.0\.conv2\.weight.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer4\.0\.conv2\.weight.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer4\.0\.bn1\.weight._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer4\.0\.bn1\.weight.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer4\.0\.bn1\.weight.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer4\.0\.bn1\.bias._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer4\.0\.bn1\.bias.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer4\.0\.bn1\.bias.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer4\.0\.conv1\.weight._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer4\.0\.conv1\.weight.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer4\.0\.conv1\.weight.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer3\.1\.bn2\.weight._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer3\.1\.bn2\.weight.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer3\.1\.bn2\.weight.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer3\.1\.bn2\.bias._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer3\.1\.bn2\.bias.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer3\.1\.bn2\.bias.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer3\.1\.conv2\.weight._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer3\.1\.conv2\.weight.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer3\.1\.conv2\.weight.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer3\.1\.bn1\.weight._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer3\.1\.bn1\.weight.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer3\.1\.bn1\.weight.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer3\.1\.bn1\.bias._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer3\.1\.bn1\.bias.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer3\.1\.bn1\.bias.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer3\.1\.conv1\.weight._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer3\.1\.conv1\.weight.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer3\.1\.conv1\.weight.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer3\.0\.downsample\.1\.weight._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer3\.0\.downsample\.1\.weight.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer3\.0\.downsample\.1\.weight.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer3\.0\.downsample\.1\.bias._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer3\.0\.downsample\.1\.bias.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer3\.0\.downsample\.1\.bias.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer3\.0\.downsample\.0\.weight._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer3\.0\.downsample\.0\.weight.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer3\.0\.downsample\.0\.weight.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer3\.0\.bn2\.weight._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer3\.0\.bn2\.weight.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer3\.0\.bn2\.weight.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer3\.0\.bn2\.bias._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer3\.0\.bn2\.bias.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer3\.0\.bn2\.bias.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer3\.0\.conv2\.weight._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer3\.0\.conv2\.weight.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer3\.0\.conv2\.weight.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer3\.0\.bn1\.weight._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer3\.0\.bn1\.weight.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer3\.0\.bn1\.weight.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer3\.0\.bn1\.bias._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer3\.0\.bn1\.bias.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer3\.0\.bn1\.bias.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer3\.0\.conv1\.weight._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer3\.0\.conv1\.weight.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer3\.0\.conv1\.weight.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer2\.1\.bn2\.weight._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer2\.1\.bn2\.weight.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer2\.1\.bn2\.weight.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer2\.1\.bn2\.bias._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer2\.1\.bn2\.bias.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer2\.1\.bn2\.bias.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer2\.1\.conv2\.weight._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer2\.1\.conv2\.weight.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer2\.1\.conv2\.weight.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer2\.1\.bn1\.weight._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer2\.1\.bn1\.weight.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer2\.1\.bn1\.weight.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer2\.1\.bn1\.bias._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer2\.1\.bn1\.bias.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer2\.1\.bn1\.bias.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer2\.1\.conv1\.weight._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer2\.1\.conv1\.weight.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer2\.1\.conv1\.weight.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer2\.0\.downsample\.1\.weight._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer2\.0\.downsample\.1\.weight.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer2\.0\.downsample\.1\.weight.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer2\.0\.downsample\.1\.bias._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer2\.0\.downsample\.1\.bias.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer2\.0\.downsample\.1\.bias.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer2\.0\.downsample\.0\.weight._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer2\.0\.downsample\.0\.weight.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer2\.0\.downsample\.0\.weight.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer2\.0\.bn2\.weight._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer2\.0\.bn2\.weight.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer2\.0\.bn2\.weight.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer2\.0\.bn2\.bias._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer2\.0\.bn2\.bias.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer2\.0\.bn2\.bias.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer2\.0\.conv2\.weight._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer2\.0\.conv2\.weight.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer2\.0\.conv2\.weight.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer2\.0\.bn1\.weight._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer2\.0\.bn1\.weight.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer2\.0\.bn1\.weight.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer2\.0\.bn1\.bias._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer2\.0\.bn1\.bias.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer2\.0\.bn1\.bias.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer2\.0\.conv1\.weight._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer2\.0\.conv1\.weight.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer2\.0\.conv1\.weight.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer1\.1\.bn2\.weight._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer1\.1\.bn2\.weight.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer1\.1\.bn2\.weight.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer1\.1\.bn2\.bias._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer1\.1\.bn2\.bias.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer1\.1\.bn2\.bias.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer1\.1\.conv2\.weight._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer1\.1\.conv2\.weight.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer1\.1\.conv2\.weight.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer1\.1\.bn1\.weight._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer1\.1\.bn1\.weight.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer1\.1\.bn1\.weight.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer1\.1\.bn1\.bias._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer1\.1\.bn1\.bias.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer1\.1\.bn1\.bias.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer1\.1\.conv1\.weight._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer1\.1\.conv1\.weight.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer1\.1\.conv1\.weight.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer1\.0\.bn2\.weight._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer1\.0\.bn2\.weight.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer1\.0\.bn2\.weight.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer1\.0\.bn2\.bias._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer1\.0\.bn2\.bias.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer1\.0\.bn2\.bias.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer1\.0\.conv2\.weight._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer1\.0\.conv2\.weight.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer1\.0\.conv2\.weight.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer1\.0\.bn1\.weight._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer1\.0\.bn1\.weight.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer1\.0\.bn1\.weight.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer1\.0\.bn1\.bias._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer1\.0\.bn1\.bias.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer1\.0\.bn1\.bias.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer1\.0\.conv1\.weight._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer1\.0\.conv1\.weight.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/layer1\.0\.conv1\.weight.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/bn1\.weight._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/bn1\.weight.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/bn1\.weight.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/bn1\.bias._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/bn1\.bias.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/bn1\.bias.bins
+      5: 1
+      6:
+      - 1
+    - 1: gradients/conv1\.weight._type
+      5: 1
+      6:
+      - 1
+    - 1: gradients/conv1\.weight.values
+      5: 1
+      6:
+      - 1
+    - 1: gradients/conv1\.weight.bins
+      5: 1
+      6:
+      - 1
+    - 1: val/loss
+      5: 1
+      6:
+      - 1
+    - 1: val/accuracy
+      5: 1
+      6:
+      - 1
