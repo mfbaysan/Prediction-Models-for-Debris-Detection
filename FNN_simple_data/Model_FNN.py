@@ -72,7 +72,7 @@ class RadarDataModule(pl.LightningDataModule):
             self.train_dataset, self.val_dataset = random_split(self.dataset, [train_size, val_size])
 
     def train_dataloader(self):
-        return DataLoader(self.train_dataset, batch_size=self.batch_size, shuffle=True)
+        return DataLoader(self.train_dataset, batch_size=self.batch_size, shuffle=True, num_workers=7)
 
     def val_dataloader(self):
         return DataLoader(self.val_dataset, batch_size=self.batch_size)
@@ -106,7 +106,7 @@ class ResNetLightning(LightningModule):
 if __name__ == "__main__":
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     # Assuming your data directory is "data"
-    root_dir = "../New_data"
+    root_dir = "../data_5cm"
     batch_size = 32
 
     custom_dataset = CustomDataset(root_dir)
@@ -117,14 +117,14 @@ if __name__ == "__main__":
 
 
     # Define block type (BasicBlock or Bottleneck)
-    model = ResidualNetwork([2, 2, 2, 2, 2], num_classes=11, activation='silu', use_noise=False, noise_stddev=0.1,
+    model = ResidualNetwork([2, 2, 2, 2, 2], num_classes=11, activation='silu', use_noise=False, noise_stddev=0.0,
                             fc_units=64, in_out_channels=[(32, 32), (32, 64), (64, 128), (128, 256), (256, 512)])
     #print(model)
 
     wandb_logger = WandbLogger(project='Resnet_NewData')
     wandb_logger.watch(model, log="all")
 
-    trainer = Trainer(max_epochs=10, accelerator="auto", logger=wandb_logger)
+    trainer = Trainer(max_epochs=30, accelerator="auto", logger=wandb_logger)
 
     trainer.fit(model, datamodule=data_module)
 

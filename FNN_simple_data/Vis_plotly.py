@@ -43,10 +43,10 @@ def plot_samples_plotly(dataset, num_classes=5, num_samples_per_class=10):
     fig.show()
 
 # Define root directory
-root_dir = "../New_data"
+root_dir = "../data_5cm"
 
 # Assuming you have instantiated your CustomDataset
 dataset = CustomDataset(root_dir=root_dir)
 
 # Visualize plots for 5 different classes with 10 samples each
-plot_samples_plotly(dataset, num_classes=5, num_samples_per_class=1)
+plot_samples_plotly(dataset, num_classes=5, num_samples_per_class=2)

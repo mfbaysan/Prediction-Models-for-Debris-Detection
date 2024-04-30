@@ -3,6 +3,8 @@ import torch.nn as nn
 import torch.nn.functional as F
 import pytorch_lightning as pl
 import torch.optim as optim
+import torchmetrics
+
 
 
 def nan_hook(module, input, output):
@@ -73,7 +75,7 @@ class ResidualBlock(nn.Module):
 
 
 class ResidualNetwork(pl.LightningModule):
-    def __init__(self, res_layers_per_block, num_classes=11, activation='relu', use_noise=False, noise_stddev=0.1,
+    def __init__(self, res_layers_per_block, num_classes=5, activation='relu', use_noise=False, noise_stddev=0.1,
                  apply_he=False, fc_units=32, in_out_channels=None):
         super(ResidualNetwork, self).__init__()
 
@@ -82,7 +84,7 @@ class ResidualNetwork(pl.LightningModule):
         self.use_noise = use_noise
         self.noise_stddev = noise_stddev
         self.fc_units = fc_units
-
+        self.accuracy = torchmetrics.classification.Accuracy(task="multiclass", num_classes=num_classes)
         # Set default in_out_channels if not specified
         if in_out_channels is None:
             in_out_channels = [[32, 64], [64, 128], [128, 256], [256, 512]]
@@ -163,10 +165,11 @@ class ResidualNetwork(pl.LightningModule):
 
         # Calculate loss
         loss = F.cross_entropy(logits, target_sq)
-        accuracy = (logits.argmax(-1) == target).float().mean().item()
+        acc = self.accuracy(logits, target_sq)
+
         # Logging
         self.log("train_loss", loss, on_step=True, prog_bar=True, logger=True)
-        self.log('train/accuracy', accuracy)
+        self.log('train_accuracy', acc)
 
         return loss
 
@@ -178,11 +181,11 @@ class ResidualNetwork(pl.LightningModule):
         target_sq = target.squeeze()
 
         loss = F.cross_entropy(logits, target_sq)
-        accuracy = (logits.argmax(-1) == target).float().mean().item()
+        acc = self.accuracy(logits, target_sq)
 
-
-        self.log("val_loss", loss, on_step=False, prog_bar=True, logger=True)
-        self.log('val/accuracy', accuracy)
+        # Logging
+        self.log("train_loss", loss, on_step=True, prog_bar=True, logger=True)
+        self.log('train_accuracy', acc)
 
         return loss
 
@@ -190,7 +193,6 @@ class ResidualNetwork(pl.LightningModule):
         # Define optimizer here (e.g., Adam)
         optimizer = torch.optim.Adam(self.parameters(), lr=0.0001)
         return optimizer
-
 
 # Example instantiation (for example, 5 layers):
 # model = ResidualNetwork([2, 2, 2, 2, 2], num_classes=4, activation='silu', use_noise=True, noise_stddev=0.1, fc_neurons=64, in_out_channels=[(32, 32), (32, 64), (64, 128), (128, 256), (256, 512)])
