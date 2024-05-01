@@ -84,7 +84,8 @@ class ResidualNetwork(pl.LightningModule):
         self.use_noise = use_noise
         self.noise_stddev = noise_stddev
         self.fc_units = fc_units
-        self.accuracy = torchmetrics.classification.Accuracy(task="multiclass", num_classes=num_classes)
+        self.train_accuracy = torchmetrics.classification.Accuracy(task="multiclass", num_classes=num_classes)
+        self.val_accuracy = torchmetrics.classification.Accuracy(task="multiclass", num_classes=num_classes)
         # Set default in_out_channels if not specified
         if in_out_channels is None:
             in_out_channels = [[32, 64], [64, 128], [128, 256], [256, 512]]
@@ -165,7 +166,7 @@ class ResidualNetwork(pl.LightningModule):
 
         # Calculate loss
         loss = F.cross_entropy(logits, target_sq)
-        acc = self.accuracy(logits, target_sq)
+        acc = self.train_accuracy(logits, target_sq)
 
         # Logging
         self.log("train_loss", loss, on_step=True, prog_bar=True, logger=True)
@@ -181,11 +182,11 @@ class ResidualNetwork(pl.LightningModule):
         target_sq = target.squeeze()
 
         loss = F.cross_entropy(logits, target_sq)
-        acc = self.accuracy(logits, target_sq)
+        acc = self.val_accuracy(logits, target_sq)
 
         # Logging
-        self.log("train_loss", loss, on_step=True, prog_bar=True, logger=True)
-        self.log('train_accuracy', acc)
+        self.log("val_loss", loss, on_step=True, prog_bar=True, logger=True)
+        self.log('val_accuracy', acc)
 
         return loss
 
