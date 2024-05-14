@@ -1,8 +1,9 @@
+import math
 from pytorch_lightning import LightningDataModule, LightningModule, Trainer
 import pytorch_lightning as pl
 import torch.nn as nn
 from pytorch_lightning.callbacks import EarlyStopping
-from torch.utils.data import random_split
+from torch.utils.data import random_split, Subset
 import random
 from torch.nn import functional as F
 import os
@@ -14,8 +15,31 @@ from tqdm import tqdm
 from pytorch_lightning.loggers import WandbLogger
 import torch.optim as optim
 from torch.optim.lr_scheduler import ReduceLROnPlateau
+
+from LSTM import LSTMClassifier
+from Transformer_conv import TimeSeriesTransformer
 from resnet import ResNet, ResNetWrapper, _resnet, BasicBlock
 from residual_network import ResidualNetwork
+from timm.models.vision_transformer import Block
+import torchmetrics
+
+def positionalencoding1d(d_model, sample):
+  """
+  :param d_model: dimension of the model
+  :param length: length of positions
+  :return: length*d_model position matrix
+  """
+  if d_model % 2 != 0:
+    raise ValueError("Cannot use sin/cos positional encoding with "
+                     "odd dim (got dim={:d})".format(d_model))
+  pe = torch.zeros(sample.shape[0], d_model)
+  position = sample.unsqueeze(1)
+  div_term = torch.exp((torch.arange(0, d_model, 2, dtype=torch.float) *
+                        -(math.log(10000.0) / d_model)))
+  pe[:, 0::2] = torch.sin(position.float() * div_term)
+  pe[:, 1::2] = torch.cos(position.float() * div_term)
+
+  return pe
 
 
 class CustomDataset(Dataset):
@@ -50,8 +74,11 @@ class CustomDataset(Dataset):
         return len(self.data)
 
     def __getitem__(self, idx):
-        data_sample = torch.FloatTensor(self.data[idx]).unsqueeze(0)
+        data_sample = torch.FloatTensor(self.data[idx])
+        # convert data_sample to encoded
+        #data_sample = positionalencoding1d(8, data_sample)
         label = torch.LongTensor(self.labels[idx])
+
         return data_sample, label
 
 
@@ -78,23 +105,65 @@ class RadarDataModule(pl.LightningDataModule):
         return DataLoader(self.val_dataset, batch_size=self.batch_size)
 
 
-class ResNetLightning(LightningModule):
-    def __init__(self, block_type, layers, num_classes=11, out_dim=None, learning_rate=1e-3):
+class TransformerLightning(LightningModule):
+    def __init__(self, learning_rate=1e-3): # lr both higher and lower , bypass positional encoding
         super().__init__()
-        self.model = ResNetWrapper(block_type, layers, num_classes=num_classes, out_dim=out_dim)
+        self.model = torch.nn.Sequential(
+            *[Block(8, 4) for _ in range(12)] #deeper
+        )
+
+        self.lr1 = nn.Linear(8, 5)
         self.learning_rate = learning_rate
-        self.criterion = nn.CrossEntropyLoss()  # Loss for multi-class classification
+        self.criterion = nn.CrossEntropyLoss()
+        self.train_accuracy = torchmetrics.classification.Accuracy(task="multiclass", num_classes=5)
+        self.val_accuracy = torchmetrics.classification.Accuracy(task="multiclass", num_classes=5)
+        # Loss for multi-class classification
 
     def forward(self, x):
-        x = self.model(x)
         print(f"Input shape received by model: {x.shape}")
+
+
+        x = self.model(x)
+
+        # get the means over dim 512 then apply linear layer
+        x = torch.mean(x, 1)
+        print(f"Input shape after transformer encoding: {x.shape}")
+        x = self.lr1(x)
 
         return x  # Forward pass through the ResNet model
 
     def training_step(self, batch, batch_idx):
-        x, y = batch
-        logits = self.forward(x)
-        loss = self.criterion(logits, y)
+        # Get data and targets
+        data, target = batch
+
+        # Forward pass
+        logits = self(data)
+        target_sq = target.squeeze()
+
+        # Calculate loss
+        loss = F.cross_entropy(logits, target_sq)
+        acc = self.train_accuracy(logits, target_sq)
+
+        # Logging
+        self.log("train_loss", loss, on_step=True, prog_bar=True, logger=True)
+        self.log('train_accuracy', acc)
+
+        return loss
+
+    def validation_step(self, batch, batch_idx):
+        # Same logic as training_step but with validation loss
+        data, target = batch
+
+        logits = self(data) # 32, 512, 8 => 32,num classes
+        target_sq = target.squeeze()
+
+        loss = F.cross_entropy(logits, target_sq)
+        acc = self.val_accuracy(logits, target_sq)
+
+        # Logging
+        self.log("val_loss", loss, on_step=True, prog_bar=True, logger=True)
+        self.log('val_accuracy', acc)
+
         return loss
 
     def configure_optimizers(self):
@@ -110,23 +179,26 @@ if __name__ == "__main__":
     batch_size = 32
 
     custom_dataset = CustomDataset(root_dir)
+    #custom_dataset = Subset(custom_dataset, range(32))
     data_module = RadarDataModule(custom_dataset, batch_size=batch_size, val_split=0.2)
 
     dataset_length = len(custom_dataset)
     print("Length of the dataset:", dataset_length)
 
+    transformer = TransformerLightning()
+    #Lstm = LSTMClassifier(input_size=1, hidden_size=64, num_layers=12, num_classes=5)
 
     # Define block type (BasicBlock or Bottleneck)
-    model = ResidualNetwork([2, 2, 2, 2, 2], num_classes=11, activation='silu', use_noise=False, noise_stddev=0.0,
-                            fc_units=64, in_out_channels=[(32, 32), (32, 64), (64, 128), (128, 256), (256, 512)])
+    # model = ResidualNetwork([2, 2, 2, 2, 2], num_classes=5, activation='silu', use_noise=False, noise_stddev=0.0,
+    #                         fc_units=64, in_out_channels=[(32, 32), (32, 64), (64, 128), (128, 256), (256, 512)])
     #print(model)
+    transformer_embed = TimeSeriesTransformer(num_features=1, num_classes=5, sequence_length=128, embedding_option='conv1d')
+    wandb_logger = WandbLogger(project='Transformer_NewData')
+    wandb_logger.watch(transformer_embed, log="all")
 
-    wandb_logger = WandbLogger(project='Resnet_NewData')
-    wandb_logger.watch(model, log="all")
+    trainer = Trainer(max_epochs=20, accelerator="auto", logger=wandb_logger)
 
-    trainer = Trainer(max_epochs=30, accelerator="auto", logger=wandb_logger)
-
-    trainer.fit(model, datamodule=data_module)
+    trainer.fit(transformer_embed, datamodule=data_module)
 
     # Print the model architecture (optional)
 
