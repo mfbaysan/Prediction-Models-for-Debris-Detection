@@ -63,9 +63,9 @@ class TimeSeriesTransformer(pl.LightningModule):
             x = self.embedding(x)  # (batch_size, sequence_length, num_features)
         elif isinstance(self.embedding, nn.Sequential):
             # Conv1D embedding
-            print(x.shape)
+            #print(x.shape)
             x = x.unsqueeze(1)
-            print(x.shape)
+            #print(x.shape)
             x = self.embedding(x)  # (batch_size, num_features, sequence_length)
             x = x.permute(0, 2, 1)  # (batch_size, sequence_length, num_features)
 
